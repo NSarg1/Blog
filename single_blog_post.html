@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Blog Post Title - My CMS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+  <!-- Header -->
+  <header>
+    <div class="header container">
+      <div class="logo">
+        <a href="/blog.html" class="logo">My CMS</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/login.html">Login</a></li>
+          <li><a href="/register.html">Register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <!-- Main Content: Blog Post Detail -->
+    <main  class="main">
+      <div class="container">
+        <article class="blog-post-detail">
+          <h2>Blog Post Title</h2>
+          <p class="post-meta">Posted on <span>September 24, 2024</span> by <span>Author Name</span></p>
+
+          <div class="post-image">
+            <img src="./assets/blog/dog.jpg" alt="Post Image" />
+          </div>
+
+          <div class="post-content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor at dui facilisis commodo.
+              Praesent at dui a nisl mollis malesuada. Phasellus varius erat ut quam tristique, id dictum felis
+              faucibus. Proin fringilla nunc sed dictum scelerisque. Donec feugiat dui nec turpis vestibulum, a placerat
+              lorem tincidunt.
+            </p>
+
+            <p>
+              Nam aliquam justo ac magna malesuada, in tristique purus cursus. Curabitur ultricies nisl quis viverra
+              pharetra. Nulla sodales, felis at gravida cursus, ante ex convallis orci, eget fermentum mi est sit amet
+              turpis. Vestibulum euismod magna sit amet est hendrerit, id pellentesque justo varius.
+            </p>
+
+            <p>
+              Aliquam sit amet nunc eu orci vestibulum faucibus. Suspendisse ac mauris in nisi malesuada tincidunt. Nam
+              ornare enim magna, at suscipit metus lobortis a. Pellentesque et ligula a justo pharetra egestas. Nulla
+              volutpat sollicitudin turpis in posuere. Mauris in facilisis leo. Donec at sollicitudin elit. Nullam a
+              bibendum justo.
+            </p>
+          </div>
+        </article>
+
+        <section class="comments-section">
+          <h3>Comments</h3>
+          <div class="comment">
+            <p><strong>John Doe</strong> on <span>September 24, 2024</span></p>
+            <p>This is a very insightful post. Thanks for sharing!</p>
+          </div>
+
+          <div class="comment">
+            <p><strong>Jane Smith</strong> on <span>September 25, 2024</span></p>
+            <p>I enjoyed reading this, it really helped me understand the topic better.</p>
+          </div>
+
+          <!-- Comment Form -->
+          <div class="comment-form">
+            <h4>Leave a Comment</h4>
+            <form action="submit_comment.php" method="POST">
+              <div class="form-group">
+                <label for="comment_author">Name</label>
+                <input type="text" id="comment_author" name="comment_author" required />
+              </div>
+              <div class="form-group">
+                <label for="comment_content">Comment</label>
+                <textarea id="comment_content" name="comment_content" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn">Submit Comment</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 My CMS. All rights reserved.</p>
+      </div>
+    </footer>
+</html>
