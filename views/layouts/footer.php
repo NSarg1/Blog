@@ -9,3 +9,6 @@
 </footer>
 </body>
 </html>
+
+<?php $_SESSION['errors'] = null; ?>
+<?php $_SESSION['old_values'] = null; ?>

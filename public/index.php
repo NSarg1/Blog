@@ -27,6 +27,13 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 // Database instance
 $db = Database::getInstance($config['db']);
+$userModel = new User($db);
+
+$_SESSION['user'] = null;
+
+if ($_SESSION['user_id'] ?? false) {
+    $_SESSION['user'] = $userModel->getUser($_SESSION['user_id']);
+}
 
 // Define routes
 switch ($page) {
@@ -45,18 +52,22 @@ switch ($page) {
         }
         break;
     case 'register':
-        $userModel = new User($db);
-        $authController = new AuthController($userModel);
-        $authController->register();
+        $authController = new AuthController($userModel, $db);
+        if ($method === 'GET') {
+            $authController->showRegisterForm();
+        } else {
+            $authController->register();
+        }
         break;
     case 'login':
-        $userModel = new User($db);
-        $authController = new AuthController($userModel);
+        $authController = new AuthController($userModel, $db);
+
         if ($method === 'GET') {
             $authController->showLoginForm();
         } else {
             $authController->login();
         }
+
         break;
     case 'add_comment':
         $commentModel = new Comment($db);

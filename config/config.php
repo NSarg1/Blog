@@ -5,7 +5,7 @@ return [
         'host' => 'localhost',
         'dbname' => 'cms_db',
         'user' => 'root',
-        'password' => 'EDSN2724!',
+        'password' => 'aist1234',
     ],
     'base_url' => 'http://blog.test',
 ];
