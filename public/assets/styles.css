@@ -120,7 +120,7 @@ header nav ul li a:hover {
 .blog-section .blog-section__popup {
   display: none;
   position: absolute;
-  top: calc(50% - 200px);
+  top: calc(50vh - 300px);
   left: 50%;
   transform: translate(-50%, -50%);
   width: 40vw;

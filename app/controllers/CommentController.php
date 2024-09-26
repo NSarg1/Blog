@@ -15,7 +15,7 @@ class CommentController {
             $userId = $_SESSION['user_id'];
 
             $this->comment->addComment($userId, $postId, $comment);
-            header('Location: post.php?id=' . $postId);
+            header('Location: post/' . $postId);
         }
     }
 
@@ -24,7 +24,7 @@ class CommentController {
         if (isset($_SESSION['user_id'])) {
             $userId = $_SESSION['user_id'];
             $this->comment->deleteComment($commentId, $userId);
-            header('Location: post.php?id=' . $postId);
+            header('Location: post/' . $postId);
         }
     }
 }

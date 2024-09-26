@@ -88,6 +88,9 @@ switch ($page) {
         session_destroy();
         header('Location: /home');
         break;
+    case 'about':
+        include '../views/about.php';
+        break;
     default:
         include('../views/404.php');
         break;

@@ -1,44 +1,50 @@
 <?php require_once __DIR__ . '/layouts/header.php'; ?>
-<article class="blog-post-detail">
-    <h2><?= $post['title'] ?></h2>
-    <p class="post-meta">Posted on <span><?= $post['created_at'] ?></span> by <span><?=$post['author']?></span></p>
+    <article class="blog-post-detail">
+        <h2><?= $post['title'] ?></h2>
+        <p class="post-meta">Posted on <span><?= $post['created_at'] ?></span> by <span><?= $post['author'] ?></span>
+        </p>
 
-    <div class="post-image">
-        <img src="../../uploads/<?= $post['image'] ?>" alt="Post Image" />
-    </div>
+        <div class="post-image">
+            <img src="../../uploads/<?= $post['image'] ?>" alt="Post Image"/>
+        </div>
 
-    <div class="post-content">
-        <?= $post['content'] ?>
-    </div>
-</article>
+        <div class="post-content">
+            <?= $post['content'] ?>
+        </div>
+    </article>
 
-<section class="comments-section">
-    <h3>Comments</h3>
-    <div class="comment">
-        <p><strong>John Doe</strong> on <span>September 24, 2024</span></p>
-        <p>This is a very insightful post. Thanks for sharing!</p>
-    </div>
+    <section class="comments-section">
+        <h3>Comments</h3>
+        <?php foreach ($comments ?? [] as $comment) : ?>
+            <div class="comment">
+                <p><strong><?= $comment['username'] ?></strong> on <span><?= $comment['created_at'] ?></span></p>
+                <p>
+                    <?= $comment['comment'] ?>
+                </p>
+                <br>
+                <?php if ($comment['user_id'] ===( $_SESSION['user_id'] ?? 0)) : ?>
+                    <form action="/delete_comment" method="POST">
+                        <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                        <input type="hidden" name="comment_id" value="<?=$comment['id'] ?>">
 
-    <div class="comment">
-        <p><strong>Jane Smith</strong> on <span>September 25, 2024</span></p>
-        <p>I enjoyed reading this, it really helped me understand the topic better.</p>
-    </div>
-
-    <!-- Comment Form -->
-    <div class="comment-form">
-        <h4>Leave a Comment</h4>
-        <form action="submit_comment.php" method="POST">
-            <div class="form-group">
-                <label for="comment_author">Name</label>
-                <input type="text" id="comment_author" name="comment_author" required />
+                        <button class="btn">Delete</button>
+                    </form>
+                <?php endif; ?>
             </div>
-            <div class="form-group">
-                <label for="comment_content">Comment</label>
-                <textarea id="comment_content" name="comment_content" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn">Submit Comment</button>
-        </form>
-    </div>
-</section>
+        <?php endforeach; ?>
+
+        <!-- Comment Form -->
+        <div class="comment-form">
+            <h4>Leave a Comment</h4>
+            <form action="/add_comment" method="POST">
+                <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                <div class="form-group">
+                    <label for="comment_content">Comment</label>
+                    <textarea id="comment_content" name="comment" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Comment</button>
+            </form>
+        </div>
+    </section>
 
 <?php require_once __DIR__ . '/layouts/footer.php'; ?>
