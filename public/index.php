@@ -39,16 +39,21 @@ if ($_SESSION['user_id'] ?? false) {
 switch ($page) {
     case 'home':
         $postModel = new Post($db);
-        $postController = new PostController($postModel);
+        $postController = new PostController($postModel, $db);
         $postController->listPosts();
         break;
     case 'post':
-        if (isset($parts[1])) {
-            $postId = (int) $parts[1];
-            $postModel = new Post($db);
-            $commentModel = new Comment($db);
-            $postController = new PostController($postModel, $commentModel);
-            $postController->showPost($postId);
+        $postModel = new Post($db);
+        $commentModel = new Comment($db);
+        $postController = new PostController($postModel, $db, $commentModel);
+
+        if ($method === 'GET') {
+            if (isset($parts[1])) {
+                $postId = (int)$parts[1];
+                $postController->showPost($postId);
+            }
+        } else {
+           $postController->create();
         }
         break;
     case 'register':
