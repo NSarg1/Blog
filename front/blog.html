@@ -28,11 +28,30 @@
     <!-- Main Content -->
     <main class="main">
       <div class="container">
-        <h2>Welcome to My CMS</h2>
-        <p>This is a basic content management system where registered users can create, update, and delete content.</p>
+        <div class="welcome">
+          <h2>Welcome to My CMS</h2>
+          <p>
+            This is a basic content management system where registered users can create, update, and delete content.
+          </p>
+        </div>
 
         <section class="blog-section">
-          <h2>Recent Blog Posts</h2>
+          <div class="title">
+            <h2>Recent Blog Posts</h2>
+            <button class="btn" onclick="handleCreateButtonClick()">Create</button>
+            <div class="blog-section__popup login-box" id="blog-create-edit-popup">
+              <h2>Create post</h2>
+              <form class="content">
+                <input required type="file" name="image" accept="image/png, image/gif, image/jpeg" />
+                <input required type="text" name="title" placeholder="Blog title" class="input" />
+                <textarea required class="input" rows="5" placeholder="Blog description"></textarea>
+                <div class="actions">
+                  <button type="reset" class="btn--text" onclick="handlePopupCancel()">Cancel</button>
+                  <button type="submit" class="btn">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
           <div class="blog-posts">
             <!-- Example Blog Post -->
             <article class="blog-post">
@@ -70,5 +89,16 @@
         <p>&copy; 2024 My CMS. All rights reserved.</p>
       </div>
     </footer>
+
+    <script>
+      const popupContainer = document.getElementById("blog-create-edit-popup");
+
+      const handleCreateButtonClick = () => {
+        popupContainer.style.display = "block";
+      };
+      const handlePopupCancel = () => {
+        popupContainer.style.display = "none";
+      };
+    </script>
   </body>
 </html>
