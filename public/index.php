@@ -53,8 +53,13 @@ switch ($page) {
                 $postController->showPost($postId);
             }
         } else {
-           $postController->create();
+            $postController->upsert();
         }
+        break;
+    case 'delete_post':
+        $postModel = new Post($db);
+        $commentController = new PostController($postModel, $db);
+        $commentController->deletePost($_POST['id']);
         break;
     case 'register':
         $authController = new AuthController($userModel, $db);

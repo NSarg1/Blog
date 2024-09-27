@@ -1,17 +1,20 @@
 <?php
 
-class CommentController {
+class CommentController
+{
     private $comment;
 
-    public function __construct($comment) {
+    public function __construct($comment)
+    {
         $this->comment = $comment;
     }
 
     // Add a new comment
-    public function addComment() {
+    public function addComment()
+    {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
             $comment = htmlspecialchars($_POST['comment']);
-            $postId = (int) $_POST['post_id'];
+            $postId = (int)$_POST['post_id'];
             $userId = $_SESSION['user_id'];
 
             $this->comment->addComment($userId, $postId, $comment);
@@ -20,7 +23,8 @@ class CommentController {
     }
 
     // Delete a comment
-    public function deleteComment($commentId, $postId) {
+    public function deleteComment($commentId, $postId)
+    {
         if (isset($_SESSION['user_id'])) {
             $userId = $_SESSION['user_id'];
             $this->comment->deleteComment($commentId, $userId);

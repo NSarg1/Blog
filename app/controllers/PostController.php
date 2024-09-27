@@ -1,11 +1,13 @@
 <?php
 
-class PostController {
+class PostController
+{
     private $post;
     private $comment;
     private $validation;
 
-    public function __construct($post, $db, $comment = null) {
+    public function __construct($post, $db, $comment = null)
+    {
         $this->post = $post;
         $this->comment = $comment;
         $this->validation = new Validation($db);
@@ -20,13 +22,20 @@ class PostController {
 
     public function showPost($postId): void
     {
-        $post= $this->post->getPostById($postId);
+        $post = $this->post->getPostById($postId);
         $comments = $this->comment->getCommentsByPostId($postId);
 
         include '../views/post.php'; // Renders the post page
     }
 
-    public function create(): void
+    public function deletePost($postId): void
+    {
+        $this->post->deletePost($postId);
+
+        header('Location: /');
+    }
+
+    public function upsert(): void
     {
         $this->validation->required('title', $_POST['title']);
         $this->validation->required('content', $_POST['content']);
@@ -40,17 +49,27 @@ class PostController {
 
         $title = htmlspecialchars($_POST['title']);
         $content = htmlspecialchars($_POST['content']);
-        $uploadResult = $this->uploadImage($_FILES['image']);
+
+        if (!$_POST['id'] || !empty($_FILES['image']['name'])) {
+            $uploadResult = $this->uploadImage($_FILES['image']);
+        } else {
+            $uploadResult['file'] = '';
+            $uploadResult['error'] = '';
+        }
 
         // Check if the upload was successful
         if (empty($uploadResult['error'])) {
-            $this->post->createPost($_SESSION['user_id'], $title, $content, $uploadResult['file']);
-            header('Location: /');
+            if (!$_POST['id']) {
+                $this->post->createPost($_SESSION['user_id'], $title, $content, $uploadResult['file']);
+            } else {
+                $this->post->updatePost($_POST['id'], $_SESSION['user_id'], $title, $content, $uploadResult['file']);
+            }
         } else {
             $_SESSION['errors']['image'] = $uploadResult['error'];
             $_SESSION['old_values'] = $_POST;
-            header('Location: /');
         }
+
+        header('Location: /');
     }
 
     private function uploadImage($file): array
@@ -92,7 +111,7 @@ class PostController {
         // Ensure the file was uploaded via HTTP POST
         if (!is_uploaded_file($fileTmpPath)) {
             return [
-                'error' =>  "File was not uploaded properly."
+                'error' => "File was not uploaded properly."
             ];
         }
 

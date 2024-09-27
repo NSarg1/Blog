@@ -4,7 +4,7 @@
         <form action="/login" method="POST">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email" value="<?=$_SESSION['old_values']['email'] ?? ''?>"/>
+                <input type="text" id="email" name="email" value="<?= $_SESSION['old_values']['email'] ?? '' ?>"/>
 
                 <?php if ($_SESSION['errors']['email'] ?? false) : ?>
                     <small class="invalid-message"><?= $_SESSION['errors']['email'] ?></small>
@@ -13,7 +13,8 @@
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" value="<?=$_SESSION['old_values']['password'] ?? ''?>"/>
+                <input type="password" id="password" name="password"
+                       value="<?= $_SESSION['old_values']['password'] ?? '' ?>"/>
 
                 <?php if ($_SESSION['errors']['password'] ?? false) : ?>
                     <small class="invalid-message"><?= $_SESSION['errors']['password'] ?></small>

@@ -22,10 +22,10 @@
                     <?= $comment['comment'] ?>
                 </p>
                 <br>
-                <?php if ($comment['user_id'] ===( $_SESSION['user_id'] ?? 0)) : ?>
+                <?php if ($comment['user_id'] === ($_SESSION['user_id'] ?? 0)) : ?>
                     <form action="/delete_comment" method="POST">
                         <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
-                        <input type="hidden" name="comment_id" value="<?=$comment['id'] ?>">
+                        <input type="hidden" name="comment_id" value="<?= $comment['id'] ?>">
 
                         <button class="btn">Delete</button>
                     </form>

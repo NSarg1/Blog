@@ -1,11 +1,13 @@
 <?php
 require_once __DIR__ . '/../../utils/Validation.php';
 
-class AuthController {
+class AuthController
+{
     private $user;
     private $validation;
 
-    public function __construct($user, $db) {
+    public function __construct($user, $db)
+    {
         $this->user = $user;
         $this->validation = new Validation($db);
     }
@@ -30,7 +32,8 @@ class AuthController {
         include '../views/register.php';
     }
 
-    public function register() {
+    public function register()
+    {
         $this->validation->required('username', $_POST['username']);
         $this->validation->required('email', $_POST['email']);
         $this->validation->required('password', $_POST['password']);
@@ -60,7 +63,8 @@ class AuthController {
         header('Location: /');
     }
 
-    public function login() {
+    public function login()
+    {
         $this->validation->email('email', $_POST['email']);
         $this->validation->min('password', $_POST['password'], 6);
 
