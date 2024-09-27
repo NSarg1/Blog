@@ -81,8 +81,8 @@ class PostController
         }
 
         // Allowed file extensions and MIME types for images
-        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-        $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $allowedExtensions = ['jpg', 'jpeg', 'png'];
+        $allowedMimeTypes = ['image/jpeg', 'image/png'];
 
         // Maximum file size (e.g., 5MB)
         $maxFileSize = 5 * 1024 * 1024; // 5 MB in bytes

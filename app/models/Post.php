@@ -46,7 +46,7 @@ class Post
 
     public function getPosts()
     {
-        $stmt = $this->db->query('SELECT * FROM posts');
+        $stmt = $this->db->query('SELECT * FROM posts ORDER BY created_at DESC');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

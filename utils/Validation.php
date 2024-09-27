@@ -14,7 +14,7 @@ class Validation
     public function required($field, $value)
     {
         if (empty($value)) {
-            $this->errors[$field] = ucfirst($field) . ' is required.';
+            $this->errors[$field] = str_replace('_', ' ', ucfirst($field)) . ' is required.';
         }
     }
 

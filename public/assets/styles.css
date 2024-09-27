@@ -15,7 +15,6 @@ body {
 .wrapper {
     display: flex;
     flex-direction: column;
-    height: 100vh;
 }
 
 /* Container to manage layout width */
@@ -69,11 +68,12 @@ header nav ul li a:hover {
 /********************** Main content styles **********************/
 
 .main {
+    overflow: auto;
     flex: 1;
     padding: 20px;
     background: #fff;
     margin-top: 20px;
-    min-height: 400px;
+    min-height: calc(100vh - 154px);
 }
 
 /********************** Blog post section styles **********************/
@@ -126,6 +126,7 @@ header nav ul li a:hover {
     transform: translate(-50%, -50%);
     width: 40vw;
     height: 40vh;
+    min-height: 400px;
     margin: initial;
     /* background-color: red; */
 }

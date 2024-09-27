@@ -1,6 +1,8 @@
 # PHP CMS with User Registration, Login, and Content Management
 
-This project is a PHP-based Content Management System (CMS) with a MySQL database, designed to allow users to register, log in, and manage content. It follows best security practices, including password hashing, input validation, and protection against XSS, CSRF, and SQL injection.
+This project is a PHP-based Content Management System (CMS) with a MySQL database, designed to allow users to register,
+log in, and manage content. It follows best security practices, including password hashing, input validation, and
+protection against XSS, CSRF, and SQL injection.
 
 ## Features
 
@@ -13,7 +15,6 @@ This project is a PHP-based Content Management System (CMS) with a MySQL databas
     - Validation of inputs to prevent SQL injection, XSS, and CSRF attacks.
     - Email validation using PHP's `filter_var()` function.
 - **404 Error Page**: A custom 404 error page for invalid URLs.
-- **Responsive Design**: The UI is fully responsive using a CSS framework (optional).
 
 ## Technologies Used
 

@@ -60,7 +60,10 @@
                             </h3>
                             <p class="blog-date">Published on: <?= $post['created_at'] ?></p>
                             <p class="blog-excerpt">
-                                <?= $post['content'] ?>
+                                <?= substr($post['content'], 0, 200) ?>
+                                <?php if (strlen($post['content']) > 200) : ?>
+                                    ...
+                                <?php endif; ?>
                             </p>
                             <a href="/post/<?= $post['id'] ?>" class="read-more">Read More</a>
 
@@ -84,7 +87,7 @@
     <script>
         const popupContainer = document.getElementById("blog-create-edit-popup");
 
-        window._posts = JSON.parse('<?= json_encode($posts) ?>');
+        window._posts = JSON.parse(`<?= json_encode($posts) ?>`);
 
         <?php if (count($_SESSION['errors'] ?? [])) :?>
         popupContainer.style.display = "block";
